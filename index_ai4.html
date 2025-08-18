@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVSK Lalith Kumar | Data Science Enthusiast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c0a18; /* Dark Purple/Blue Background */
+            color: #E5E7EB; /* Light Gray Text */
+            overflow-x: hidden;
+        }
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .glass-effect {
+            background: rgba(23, 20, 42, 0.6); /* Semi-transparent dark purple */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .accent-color {
+            color: #818cf8; /* Indigo */
+        }
+        .accent-bg {
+            background-color: #6366f1; /* Indigo */
+        }
+        .hover\:accent-bg:hover {
+            background-color: #4f46e5; /* Darker Indigo */
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .section-title .icon {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Loader animation */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #6366f1;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="background-canvas"></canvas>
+
+    <header id="header" class="glass-effect fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <nav class="hidden md:flex items-center justify-start flex-1 space-x-8">
+                <a href="#about" class="text-gray-300 hover:accent-color transition-colors">About</a>
+                <a href="#projects" class="text-gray-300 hover:accent-color transition-colors">Projects</a>
+                <a href="#skills" class="text-gray-300 hover:accent-color transition-colors">Skills</a>
+            </nav>
+            <div class="flex-shrink-0 mx-auto md:mx-0">
+                <a href="#">
+                    <img src="logo.png" onerror="this.onerror=null;this.src='https://placehold.co/100x50/0c0a18/818cf8?text=LK';" alt="LK Logo" class="h-12 w-auto">
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center justify-end flex-1 space-x-8">
+                <a href="#ai-assistant" class="text-gray-300 hover:accent-color transition-colors">AI Assistant</a>
+                <a href="#contact" class="text-gray-300 hover:accent-color transition-colors">Contact</a>
+            </nav>
+            <div class="md:hidden flex-1 flex justify-end">
+                <button id="mobile-menu-button" class="text-white">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+             <div class="md:hidden flex-1 flex justify-start">
+                </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 text-center text-gray-300 hover:accent-color">About</a>
+            <a href="#projects" class="block py-2 text-center text-gray-300 hover:accent-color">Projects</a>
+            <a href="#skills" class="block py-2 text-center text-gray-300 hover:accent-color">Skills</a>
+            <a href="#ai-assistant" class="block py-2 text-center text-gray-300 hover:accent-color">AI Assistant</a>
+            <a href="#contact" class="block py-2 text-center text-gray-300 hover:accent-color">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="min-h-screen flex items-center justify-center text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
+                    MVSK Lalith Kumar
+                </h1>
+                <p class="text-xl md:text-2xl accent-color mb-8">
+                    Data Science Enthusiast
+                </p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="https://www.linkedin.com/in/lalithkumar1612/" target="_blank" class="text-gray-300 hover:accent-color transition-transform transform hover:scale-110">
+                        <i data-lucide="linkedin" class="w-8 h-8"></i>
+                    </a>
+                    <a href="https://github.com/Lalith1612" target="_blank" class="text-gray-300 hover:accent-color transition-transform transform hover:scale-110">
+                        <i data-lucide="github" class="w-8 h-8"></i>
+                    </a>
+                    <a href="https://x.com/K16327818Lalith" target="_blank" class="text-gray-300 hover:accent-color transition-transform transform hover:scale-110">
+                        <i data-lucide="twitter" class="w-8 h-8"></i>
+                    </a>
+                </div>
+                <div class="mb-8">
+                    <a href="./Lalith_resume1.pdf" download="Lalith_Kumar_Resume.pdf" class="inline-block accent-bg text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:accent-bg transition-all transform hover:scale-105">
+                        Download Resume
+                    </a>
+                </div>
+                <p class="text-xl font-bold text-gray-300">
+                    "Data tells the story, AI writes the future."
+                </p>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-white"><i class="icon" data-lucide="user-round"></i>About Me</h2>
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/3">
+                        <img src="20230302_102153.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1F2937/E5E7EB?text=Lalith+Kumar';" alt="MVSK Lalith Kumar" class="rounded-full shadow-2xl w-64 h-64 lg:w-80 lg:h-80 mx-auto border-4 border-gray-700 object-cover">
+                    </div>
+                    <div class="lg:w-2/3 text-lg text-gray-300 space-y-4 text-center lg:text-left">
+                        <p>
+                            Hi, I’m Lalith Kumar. I’m an M.Tech student in Data Science & AI at Mahindra University, Hyderabad — driven by the challenge of transforming data and AI into real-world impact. My expertise spans Machine Learning, Deep Learning, Generative AI, Autonomous Agents, and Intelligent Applications.
+                        </p>
+                        <p>
+                            I work across the entire AI development spectrum — from data exploration & visualization using Power BI, Tableau, and Excel, to model building & deployment with PyTorch, FastAPI, and modern AI frameworks like CrewAI and Agno.
+                        </p>
+                        <p>
+                            My academic journey blends deep technical exploration with practical problem-solving. Beyond coursework, I’m committed to research-driven, publishable projects that combine innovation with tangible outcomes.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-16">
+                    <h3 class="text-3xl font-bold text-white text-center mb-8">Education</h3>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div class="glass-effect p-6 rounded-lg flex items-center gap-6">
+                            <img src="images/mahindra-logo.png" class="h-12 w-12 bg-white p-2 rounded-md object-contain" alt="Mahindra University Logo">
+                            <div>
+                                <p class="text-sm accent-color font-semibold">2024 – 2026 (Expected)</p>
+                                <h4 class="text-xl font-bold text-white mt-1">Master of Technology in Data Science</h4>
+                                <p class="text-gray-400 mt-1">Mahindra University, Hyderabad</p>
+                            </div>
+                        </div>
+                        <div class="glass-effect p-6 rounded-lg flex items-center gap-6">
+                            <img src="images/lpu-logo.png" class="h-12 w-12 bg-white p-2 rounded-md object-contain" alt="Lovely Professional University Logo">
+                            <div>
+                                <p class="text-sm accent-color font-semibold">2020 – 2024</p>
+                                <h4 class="text-xl font-bold text-white mt-1">Bachelor of Engineering in CSE (Data Science)</h4>
+                                <p class="text-gray-400 mt-1">Lovely Professional University, Punjab</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-white"><i class="icon" data-lucide="folder-kanban"></i>My Projects</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="glass-effect rounded-lg overflow-hidden flex flex-col group">
+                        <img src="https://placehold.co/600x400/17142A/818CF8?text=Predictive+Maintenance" alt="Predictive Maintenance Project" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white">Predictive Maintenance: Machine Failure Prediction</h3>
+                            <p class="text-gray-400 mt-2 flex-grow">A machine learning application that predicts machine failure to enable proactive maintenance, reducing downtime and operational costs.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Streamlit</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Scikit-learn</span>
+                            </div>
+                            <div class="mt-6 flex gap-4">
+                                <a href="assets/predictive-maintenance-demo.png" target="_blank" class="w-1/2 text-center accent-bg text-white py-2 rounded-lg hover:accent-bg transition-colors"> Demo</a>
+                                <a href="https://github.com/Lalith1612/Predictive-Maintenance-Machine-Failure-Prediction" target="_blank" class="w-1/2 text-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors">Source Code</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-lg overflow-hidden flex flex-col group">
+                        <img src="https://placehold.co/600x400/17142A/818CF8?text=IBM+HR+Analytics" alt="IBM HR Analytics Project" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white">IBM HR Analytics: Employee Attrition</h3>
+                            <p class="text-gray-400 mt-2 flex-grow">An end-to-end ML project to predict employee attrition and understand key influencing factors, enabling proactive retention measures.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">XGBoost</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">TensorFlow</span>
+                            </div>
+                            <div class="mt-6 flex gap-4">
+                                <a href="https://hr-analytics-employee-attrition-performance-lk1612maqhx.streamlit.app/" target="_blank" class="w-1/2 text-center accent-bg text-white py-2 rounded-lg hover:accent-bg transition-colors">Live Demo</a>
+                                <a href="https://github.com/Lalith1612/IBM-HR-Analytics-Employee-Attrition-Performance" target="_blank" class="w-1/2 text-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-lg overflow-hidden flex flex-col group">
+                        <img src="https://placehold.co/600x400/17142A/818CF8?text=Data+Prepping+Co-Pilot" alt="Data Prepping Co-Pilot Project" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white">Data Prepping Co-Pilot</h3>
+                            <p class="text-gray-400 mt-2 flex-grow">An intelligent web application that automates and simplifies the data cleaning and preprocessing workflow for faster analysis.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Streamlit</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Pandas</span>
+                            </div>
+                            <div class="mt-6 flex gap-4">
+                                <a href="https://soft-kataifi-17322e.netlify.app/" target="_blank" class="w-1/2 text-center accent-bg text-white py-2 rounded-lg hover:accent-bg transition-colors">Live Demo</a>
+                                <a href="https://github.com/Lalith1612/Data-Prepping-Co-Pilot" target="_blank" class="w-1/2 text-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-lg overflow-hidden flex flex-col group">
+                        <img src="https://placehold.co/600x400/17142A/818CF8?text=Chat+with+any+PDF" alt="Chat with PDF Project" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white">Chat with any PDF</h3>
+                            <p class="text-gray-400 mt-2 flex-grow">A conversational AI application using RAG that allows users to interact with and ask questions about the content of PDF documents.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">LangChain</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Streamlit</span>
+                            </div>
+                            <div class="mt-6 flex gap-4">
+                                <a href="https://chat-with-any-pdf-lk1612kselmp83kt5gcvc4.streamlit.app/" target="_blank" class="w-1/2 text-center accent-bg text-white py-2 rounded-lg hover:accent-bg transition-colors">Live Demo</a>
+                                <a href="https://github.com/Lalith1612/Chat-with-any-PDF" target="_blank" class="w-1/2 text-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-lg overflow-hidden flex flex-col group">
+                        <img src="https://placehold.co/600x400/17142A/818CF8?text=Gemini+Instructor" alt="Gemini Instructor Project" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white">Gemini-Instructor</h3>
+                            <p class="text-gray-400 mt-2 flex-grow">A tool that enables structured data extraction from Large Language Models (LLMs) like Google's Gemini using Pydantic models.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Pydantic</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Gemini</span>
+                            </div>
+                            <div class="mt-6 flex gap-4">
+                                <a href="https://gemini-translator-lk16125xg2ax8hnm62nalq.streamlit.app/" target="_blank" class="w-1/2 text-center accent-bg text-white py-2 rounded-lg hover:accent-bg transition-colors">Live Demo</a>
+                                <a href="https://github.com/Lalith1612/Gemini-Instructor" target="_blank" class="w-1/2 text-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-lg overflow-hidden flex flex-col group">
+                        <img src="https://placehold.co/600x400/17142A/818CF8?text=TL-Dimension+Estimator" alt="TL-Dimension Estimator Project" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white">TL-Dimension Estimator</h3>
+                            <p class="text-gray-400 mt-2 flex-grow">A machine learning solution to accurately estimate component/tool dimensions from process and operational parameters.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Scikit-learn</span>
+                                <span class="bg-indigo-900/50 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">TensorFlow</span>
+                            </div>
+                            <div class="mt-6 flex gap-4">
+                                <a href="https://tl-dimension-predictor-npfgjulyudtepasyvt5x6.streamlit.app/" target="_blank" class="w-1/2 text-center accent-bg text-white py-2 rounded-lg hover:accent-bg transition-colors">Live Demo</a>
+                                <a href="https://github.com/Lalith1612/tl-dimension-predictor/tree/main" target="_blank" class="w-1/2 text-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-white"><i class="icon" data-lucide="lightbulb"></i>My Skills</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold text-white mb-4">Languages</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Python</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">SQL</span>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold text-white mb-4">Frameworks & Libraries</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Pandas</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">NumPy</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Pytorch</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Scikit-learn</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">LangChain</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">LangGraph</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Streamlit</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">FastAPI</span>
+                             <span class="glass-effect text-lg px-4 py-2 rounded-md">Crew AI</span>
+                              <span class="glass-effect text-lg px-4 py-2 rounded-md">Agno</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Tools & Platforms</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Git & GitHub</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Docker</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">VS Code</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Power BI</span>
+                            <span class="glass-effect text-lg px-4 py-2 rounded-md">Tableau</span>
+                             <span class="glass-effect text-lg px-4 py-2 rounded-md">Excel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-assistant" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title text-white"><i class="icon" data-lucide="sparkles"></i>AI Career Assistant</h2>
+                <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-8">
+                    Curious about a career path or need a project idea? Enter a skill or job title below and let my AI assistant, powered by the Gemini API, generate some creative ideas for you!
+                </p>
+                <div class="max-w-xl mx-auto glass-effect rounded-lg p-8">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="text" id="ai-prompt-input" class="w-full bg-gray-900/50 text-white border border-gray-600 rounded-md px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="e.g., 'Data Analyst' or 'PyTorch'">
+                        <button id="ai-generate-button" class="accent-bg text-white font-semibold py-2 px-6 rounded-lg shadow-lg hover:accent-bg transition-all transform hover:scale-105 flex items-center justify-center">
+                            <span id="generate-text">Generate Ideas ✨</span>
+                            <div id="generate-loader" class="hidden loader w-6 h-6 border-2"></div>
+                        </button>
+                    </div>
+                    <div id="ai-result-container" class="mt-6 text-left text-gray-300 bg-gray-900/50 p-4 rounded-md min-h-[100px]">
+                        Your project ideas will appear here...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title text-white"><i class="icon" data-lucide="mail"></i>Get In Touch</h2>
+                <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-8">
+                    I'm currently seeking internship opportunities and am open to collaborations. If you have a project in mind or just want to connect, feel free to reach out!
+                </p>
+                <button id="open-modal-button" class="inline-block accent-bg text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:accent-bg transition-all transform hover:scale-105">
+                    Say Hello
+                </button>
+            </div>
+        </section>
+
+    </main>
+    
+    <div id="contact-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0">
+        <div class="glass-effect rounded-lg p-8 max-w-sm w-full relative transform scale-95 transition-transform duration-300">
+            <button id="close-modal-button" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i data-lucide="x"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-white mb-6 text-center">Contact Information</h3>
+            <div class="space-y-4">
+                <div class="flex items-center gap-4">
+                    <i data-lucide="mail" class="w-6 h-6 accent-color"></i>
+                    <a href="mailto:lalithkumar.mvsk@gmail.com" class="text-lg text-gray-300 hover:accent-color">lalithkumar.mvsk@gmail.com</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <i data-lucide="phone" class="w-6 h-6 accent-color"></i>
+                    <span class="text-lg text-gray-300">+91 8317509555</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="text-center py-6">
+        <div class="container mx-auto px-6">
+            <p class="text-gray-400">&copy; 2025 MVSK Lalith Kumar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button id="to-top-button" class="hidden fixed bottom-8 right-8 accent-bg/50 text-white p-3 rounded-full shadow-lg hover:accent-bg transition-all">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Animated Background
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(129, 140, 248, 0.6)';
+                particles.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+            }
+        }
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            init();
+        });
+
+        resizeCanvas();
+        init();
+        animate();
+
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Header background on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-gray-900/80');
+            } else {
+                header.classList.remove('bg-gray-900/80');
+            }
+        });
+
+        // Scroll to top button
+        const toTopButton = document.getElementById('to-top-button');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                toTopButton.classList.remove('hidden');
+            } else {
+                toTopButton.classList.add('hidden');
+            }
+        });
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Fade-in animation for sections
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Contact Modal Logic
+        const openModalButton = document.getElementById('open-modal-button');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const contactModal = document.getElementById('contact-modal');
+        const modalContent = contactModal.querySelector('div');
+
+        openModalButton.addEventListener('click', () => {
+            contactModal.classList.remove('hidden');
+            setTimeout(() => {
+                contactModal.classList.add('opacity-100');
+                modalContent.style.transform = 'scale(1)';
+            }, 10);
+        });
+
+        const closeModal = () => {
+            contactModal.classList.remove('opacity-100');
+            modalContent.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                contactModal.classList.add('hidden');
+            }, 300);
+        };
+
+        closeModalButton.addEventListener('click', closeModal);
+
+        contactModal.addEventListener('click', (event) => {
+            if (event.target === contactModal) {
+                closeModal();
+            }
+        });
+
+        // Gemini API Feature Logic
+        const generateButton = document.getElementById('ai-generate-button');
+        const promptInput = document.getElementById('ai-prompt-input');
+        const resultContainer = document.getElementById('ai-result-container');
+        const generateText = document.getElementById('generate-text');
+        const generateLoader = document.getElementById('generate-loader');
+
+        generateButton.addEventListener('click', async () => {
+            const userPrompt = promptInput.value.trim();
+            if (!userPrompt) {
+                resultContainer.innerHTML = '<p class="text-red-400">Please enter a skill or job title.</p>';
+                return;
+            }
+
+            generateText.classList.add('hidden');
+            generateLoader.classList.remove('hidden');
+            generateButton.disabled = true;
+            resultContainer.innerHTML = '<div class="loader"></div>';
+
+            const fullPrompt = `As an expert AI career advisor, generate 3 innovative and distinct project ideas for a data science student skilled in "${userPrompt}". For each project, provide a catchy title and a 2-3 sentence description. The projects should be suitable for a portfolio to impress recruiters. Format the output clearly with titles in bold.`;
+            
+            let chatHistory = [{ role: "user", parts: [{ text: fullPrompt }] }];
+            const payload = { contents: chatHistory };
+            const apiKey = "%VITE_GEMINI_API_KEY%"; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+
+            try {
+                // Exponential backoff for retries
+                let response;
+                let retries = 3;
+                let delay = 1000;
+                for (let i = 0; i < retries; i++) {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) break;
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2;
+                }
+
+                if (!response.ok) {
+                    throw new Error('API request failed after multiple retries.');
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    let text = result.candidates[0].content.parts[0].text;
+                    // Sanitize and format the text
+                    text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold for titles
+                    text = text.replace(/\n/g, '<br>');
+                    resultContainer.innerHTML = `<div class="prose prose-invert max-w-none">${text}</div>`;
+                } else {
+                    resultContainer.innerHTML = '<p class="text-red-400">Sorry, I couldn\'t generate ideas right now. The response from the AI was empty. Please try again.</p>';
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                resultContainer.innerHTML = '<p class="text-red-400">An error occurred while fetching ideas. Please check the console and try again later.</p>';
+            } finally {
+                generateText.classList.remove('hidden');
+                generateLoader.classList.add('hidden');
+                generateButton.disabled = false;
+            }
+        });
+
+    </script>
+</body>
+</html>
