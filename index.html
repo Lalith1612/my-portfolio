@@ -560,7 +560,7 @@
         const generateText = document.getElementById('generate-text');
         const generateLoader = document.getElementById('generate-loader');
 
-        generateButton.addEventListener('click', async () => {
+generateButton.addEventListener('click', async () => {
             const userPrompt = promptInput.value.trim();
             if (!userPrompt) {
                 resultContainer.innerHTML = '<p class="text-red-400">Please enter a skill or job title.</p>';
@@ -574,36 +574,24 @@
 
             const fullPrompt = `As an expert AI career advisor, generate 3 innovative and distinct project ideas for a data science student skilled in "${userPrompt}". For each project, provide a catchy title and a 2-3 sentence description. The projects should be suitable for a portfolio to impress recruiters. Format the output clearly with titles in bold.`;
             
-            let chatHistory = [{ role: "user", parts: [{ text: fullPrompt }] }];
-            const payload = { contents: chatHistory };
-            const apiKey = "%VITE_GEMINI_API_KEY%"; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
-
+            // This entire 'try...catch' block is the updated part.
             try {
-                // Exponential backoff for retries
-                let response;
-                let retries = 3;
-                let delay = 1000;
-                for (let i = 0; i < retries; i++) {
-                    response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (response.ok) break;
-                    await new Promise(res => setTimeout(res, delay));
-                    delay *= 2;
-                }
+                // The new URL is your own serverless function on Vercel
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    // We only need to send the prompt to our secure function
+                    body: JSON.stringify({ prompt: fullPrompt }) 
+                });
 
                 if (!response.ok) {
-                    throw new Error('API request failed after multiple retries.');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'API request failed.');
                 }
 
                 const result = await response.json();
                 
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
+                if (result.candidates && result.candidates[0]?.content.parts[0]) {
                     let text = result.candidates[0].content.parts[0].text;
                     // Sanitize and format the text
                     text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -611,18 +599,18 @@
                     text = text.replace(/\n/g, '<br>');
                     resultContainer.innerHTML = `<div class="prose prose-invert max-w-none">${text}</div>`;
                 } else {
-                    resultContainer.innerHTML = '<p class="text-red-400">Sorry, I couldn\'t generate ideas right now. The response from the AI was empty. Please try again.</p>';
+                    console.error("API returned an unexpected response:", result);
+                    resultContainer.innerHTML = '<p class="text-red-400">Sorry, the AI returned an empty or invalid response.</p>';
                 }
             } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                resultContainer.innerHTML = '<p class="text-red-400">An error occurred while fetching ideas. Please check the console and try again later.</p>';
+                console.error('Error calling API:', error);
+                resultContainer.innerHTML = `<p class="text-red-400">An error occurred: ${error.message}</p>`;
             } finally {
                 generateText.classList.remove('hidden');
                 generateLoader.classList.add('hidden');
                 generateButton.disabled = false;
             }
         });
-
     </script>
 </body>
 </html>
